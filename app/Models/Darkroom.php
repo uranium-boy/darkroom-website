@@ -11,6 +11,8 @@ class Darkroom extends Model
 
     protected $fillable = [
         'name',
+        'opening_time',
+        'closing_time',
         'is_operational'
     ];
 

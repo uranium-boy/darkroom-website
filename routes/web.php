@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('home');
@@ -24,5 +25,7 @@ Route::get('/test', function () {
 Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 
 require __DIR__.'/auth.php';

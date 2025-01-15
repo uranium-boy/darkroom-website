@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('darkrooms', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->time('opening_time');
+            $table->time('closing_time');
             $table->boolean('is_operational')->default(true);
             $table->timestamps();
         });
