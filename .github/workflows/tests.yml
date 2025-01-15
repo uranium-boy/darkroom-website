@@ -43,5 +43,8 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
+      - name: Check if Pest is installed
+        run: ./vendor/bin/pest --version
+
       - name: Execute tests
-        run: vendor/bin/phpunit
+        run: ./vendor/bin/pest
