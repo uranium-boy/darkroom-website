@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
-@section('title', 'Test')
+@section('title', 'Calendar')
 
 @section('header')
-    <h1>Test</h1>
+    <h1>Calendar test</h1>
 @endsection
 
 @section('content')
@@ -11,8 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <p>Nasza ciemnia coś tam</p>
-                    <h1>Kalendarz:</h1>
+                    <p>Tutaj wstaw opis coś tam coś tam</p>
                     <div id="calendar-preview"></div>
 {{--
                     {{ __("You're logged in!") }}

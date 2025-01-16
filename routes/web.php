@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DarkroomController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReservationController;
@@ -26,6 +27,18 @@ Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+Route::get('/calendar', function () {
+    return view('calendar');
+})->name('calendar');
+
+// Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+// Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+
+Route::get('/darkrooms/{id}/reservations', [ReservationController::class, 'index'])
+    ->name('reservations.index');
+Route::post('/darkrooms/{id}/reservations', [ReservationController::class, 'store'])
+    ->name('reservations.store');
+Route::get('/darkrooms/{id}/opening-time', [DarkroomController::class, 'getOpeningTime'])
+    ->name('darkrooms.opening-hours');
 
 require __DIR__.'/auth.php';
