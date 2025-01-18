@@ -13,7 +13,6 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <p>Nasza ciemnia coś tam</p>
                     <h1>Kalendarz:</h1>
-                    <div id="calendar-preview"></div>
 {{--
                     {{ __("You're logged in!") }}
 --}}

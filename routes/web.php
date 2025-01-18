@@ -27,9 +27,11 @@ Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/calendar', function () {
-    return view('calendar');
-})->name('calendar');
+Route::middleware('auth')->group(function () {
+    Route::get('/reservations', function () {
+        return view('reservations');
+    })->name('reservations');
+});
 
 // Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 // Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
@@ -38,7 +40,7 @@ Route::get('/darkrooms/{id}/reservations', [ReservationController::class, 'index
     ->name('reservations.index');
 Route::post('/darkrooms/{id}/reservations', [ReservationController::class, 'store'])
     ->name('reservations.store');
-Route::get('/darkrooms/{id}/opening-time', [DarkroomController::class, 'getOpeningTime'])
-    ->name('darkrooms.opening-hours');
+Route::get('/darkrooms/{id}/operating-time', [DarkroomController::class, 'getOperatingTime'])
+    ->name('darkrooms.operating-time');
 
 require __DIR__.'/auth.php';

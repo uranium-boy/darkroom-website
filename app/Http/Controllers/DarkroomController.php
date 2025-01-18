@@ -6,7 +6,7 @@ use App\Models\Darkroom;
 
 class DarkroomController extends Controller
 {
-    public function getOpeningTime($darkroomId)
+    public function getOperatingTime($darkroomId)
     {
         $darkroom = Darkroom::findOrFail($darkroomId);
 
