@@ -43,6 +43,9 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
+      - name: Build assets with Vite
+        run: npm run build
+
       - name: Check if Pest is installed
         run: ./vendor/bin/pest --version
 
