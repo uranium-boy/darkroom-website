@@ -3,11 +3,12 @@ name: Tests
 on:
   push:
     branches:
-      - master
+      - main
       - '*.x'
   pull_request:
   schedule:
     - cron: '0 0 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -42,6 +43,9 @@ jobs:
 
       - name: Generate app key
         run: php artisan key:generate
+
+      - name: Install npm dependencies
+        run: npm install
 
       - name: Build assets with Vite
         run: npm run build
