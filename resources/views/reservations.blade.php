@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.guest-app')
 
 @section('title', 'Calendar')
 
@@ -14,9 +14,9 @@
                     <p>Tutaj wstaw opis coś tam coś tam</p>
                     <x-calendar :darkroomId="1" :isEditable="true" :userId="Auth::user()->id"></x-calendar>
                     <x-secondary-button id="confirm-button" disabled>Confirm reservation</x-secondary-button>
-{{--
-                    {{ __("You're logged in!") }}
---}}
+                    {{--
+                                        {{ __("You're logged in!") }}
+                    --}}
                 </div>
             </div>
         </div>

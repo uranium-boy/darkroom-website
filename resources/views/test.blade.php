@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.guest-app')
 
 @section('title', 'Calendar')
 
@@ -13,9 +13,9 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <p>Tutaj wstaw opis coś tam coś tam</p>
                     <div id="calendar"></div>
-{{--
-                    {{ __("You're logged in!") }}
---}}
+                    {{--
+                                        {{ __("You're logged in!") }}
+                    --}}
                 </div>
             </div>
         </div>
