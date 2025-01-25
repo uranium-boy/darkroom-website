@@ -1,23 +1,36 @@
 <?php
 
 use App\Http\Controllers\Admin\DarkroomController as AdminDarkroomController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\DarkroomController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/dashboard', function () {
+/*Route::get('/welcome', function () {
+    return view('home');
+})->name('welcome');*/
+
+/*Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');*/
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::get('/calendar', function () {
+    return view('calendar');
+})->name('calendar');
 
 Route::middleware(['auth', 'is_admin'])->group(function () {
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     /* Managing Darkrooms */
     Route::get('admin/darkrooms', [AdminDarkroomController::class, 'index'])->name('admin.darkrooms.index');
@@ -42,28 +55,27 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/test', function () {
-    return view('test');
-})->name('test');
-
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
-
 Route::middleware('auth')->group(function () {
     Route::get('/reservations', function () {
         return view('reservations');
     })->name('reservations');
+    Route::delete('/reservations/{reservationId}', [ReservationController::class, 'destroy'])
+        ->name('reservations.destroy');
 });
 
-// Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
-// Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+/* Darkrooms info */
+Route::get('/darkrooms/names', [DarkroomController::class, 'getNames'])
+    ->name('darkrooms.names');
+Route::get('/darkrooms/{id}/operating-time', [DarkroomController::class, 'getOperatingTime'])
+    ->name('darkrooms.operating-time');
+Route::get('/darkrooms/{id}/status', [DarkroomController::class, 'getStatus'])
+    ->name('darkrooms.status');
 
+/* Reservations */
 Route::get('/darkrooms/{id}/reservations', [ReservationController::class, 'index'])
     ->name('reservations.index');
 Route::post('/darkrooms/{id}/reservations', [ReservationController::class, 'store'])
     ->name('reservations.store');
-Route::get('/darkrooms/{id}/operating-time', [DarkroomController::class, 'getOperatingTime'])
-    ->name('darkrooms.operating-time');
+
 
 require __DIR__.'/auth.php';

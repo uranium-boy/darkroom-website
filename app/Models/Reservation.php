@@ -13,13 +13,20 @@ class Reservation extends Model
         'start_time',
         'end_time',
         'user_id',
-        'darkroom_id'
+        'darkroom_id',
+    ];
+
+    protected $casts = [
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
+        'created_at' => 'datetime',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
     public function darkroom()
     {
         return $this->belongsTo(Darkroom::class);

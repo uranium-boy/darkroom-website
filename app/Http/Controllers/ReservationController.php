@@ -13,6 +13,7 @@ class ReservationController extends Controller
         $userId = auth()->id();
 
         $reservations = Reservation::where('darkroom_id', $darkroomId)
+            ->where('start_time', '>=', today())
             ->get()
             ->map(function ($reservation) use ($userId) {
                 return [
@@ -28,11 +29,12 @@ class ReservationController extends Controller
     public function store(Request $request, $darkroomId)
     {
         $darkroom = Darkroom::findOrFail($darkroomId);
+        $userId = auth()->id();
 
         $validated = $request->validate([
             'start_time' => 'required|date|after:now',
             'end_time' => 'required|date|after:start_time',
-            'user_id' => 'required|exists:users,id',
+            /*            'user_id' => 'required|exists:users,id', */
         ]);
 
         $overlaps = Reservation::where('darkroom_id', $darkroomId)
@@ -53,9 +55,22 @@ class ReservationController extends Controller
         $reservation = $darkroom->reservations()->create([
             'start_time' => $request->get('start_time'),
             'end_time' => $request->get('end_time'),
-            'user_id' => $request->get('user_id'),
+            'user_id' => $userId,
         ]);
 
         return response()->json(['success' => true]);
+    }
+
+    public function destroy($reservationId)
+    {
+        $reservation = Reservation::findOrFail($reservationId);
+
+        if ($reservation->user_id !== auth()->id() && ! auth()->user()->is_admin) {
+/*            abort(403, 'Unauthorized action.');*/
+            return response()->json(['error' => 'You are not allowed to delete this reservation.'], 403);
+        }
+        $reservation->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Reservation deleted.');
     }
 }
