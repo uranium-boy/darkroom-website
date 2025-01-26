@@ -28,18 +28,18 @@ Maciej Janczara
 The project has not been tested with other versions of the above dependencies, compatibility cannot be guaranteed.
 
 ## How to run this project
-In the project directory type these commands:
-1. composer install
-2. npm install
-3. npm run build
-4. cp .env.example .env
-5. php artisan key:generate
-6. sqlite3 database/database.sqlite < database_dump.sql
-7. php artisan serve
+In the project directory run the following commands:
+1. `composer install`
+2. `npm install`
+3. `npm run build`
+4. `cp .env.example .env`
+5. `php artisan key:generate`
+6. `sqlite3 database/database.sqlite < database_dump.sql`
+7. `php artisan serve`
 
 The website should then be available at the defualt address `localhost:8000`
 
-In case of errors related to database, please make sure that the `pdo_sqlite` extension is installed and enabled
+In case of errors related to the database, please make sure that the `pdo_sqlite` extension is installed and enabled
 (this can be checked by running `php -m`)
 
 ## Test accounts
