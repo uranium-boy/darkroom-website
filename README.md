@@ -19,11 +19,11 @@ Maciej Janczara
 - Frontend: Laravel Breeze starter kit, Blade templates, TailwindCSS
 
 ## Dependencies
-PHP 8.3.15
-Laravel Framework 11.36.1
-sqlite 3.48.0
-npm 11.0.0
-node v23.4.0
+- PHP 8.3.15
+- Laravel Framework 11.36.1
+- sqlite 3.48.0
+- npm 11.0.0
+- node v23.4.0
 
 The project has not been tested with other versions of the above dependencies, compatibility cannot be guaranteed.
 
