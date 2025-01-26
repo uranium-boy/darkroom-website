@@ -1,3 +1,10 @@
+# Darkroom Rental Website
+
+This is a website for renting film photography darkrooms, created as a university project for web application programming classes.
+
+## Author
+Maciej Janczara
+
 ## Functionalities
 - **Guest access**: view reservation schedules for each darkroom without logging in
 - **User authorization**: login and registration functionality
