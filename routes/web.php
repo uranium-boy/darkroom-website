@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DarkroomController as AdminDarkroomController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
 use App\Http\Controllers\DarkroomController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
@@ -47,6 +48,10 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('admin/users/{user}/edit', [AdminUserController::class, 'edit'])->name('admin.users.edit');
     Route::put('admin/users/{user}', [AdminUserController::class, 'update'])->name('admin.users.update');
     Route::delete('admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+
+    /* Managing Reservations */
+    Route::get('admin/darkrooms/{darkroomId}/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations.index');
+    Route::delete('admin/darkrooms/{darkroomId}/reservations/{reservationId}', [AdminReservationController::class, 'destroy'])->name('admin.reservations.destroy');
 });
 
 Route::middleware('auth')->group(function () {

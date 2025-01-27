@@ -30,19 +30,19 @@ The project has not been tested with other versions of the above dependencies, c
 ## How to run this project
 In the project directory run the following commands:
 1. `composer install`
-    installs PHP dependencies from `composer.json` file
+installs PHP dependencies from `composer.json` file
 2. `npm install`
-    installs JS dependencies from `package.json` file
+installs JS dependencies from `package.json` file
 3. `npm run build`
-    builds frontend assets
+builds frontend assets
 4. `cp .env.example .env`
-    copy the envinronment configuration file
+copy the envinronment configuration file
 5. `php artisan key:generate`
-    generates a new application key for encryption
+generates a new application key for encryption
 6. `sqlite3 database/database.sqlite < database_dump.sql`
-    imports database (`php artisan migrate` can be used to create a new, empty database)
+imports database (`php artisan migrate` can be used to create a new, empty database)
 7. `php artisan serve`
-    starts PHP server
+starts PHP server
 
 The website should then be available at the defualt address `localhost:8000`
 
