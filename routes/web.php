@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\Admin\DarkroomController as AdminDarkroomController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\DarkroomController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -50,8 +50,8 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::delete('admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 
     /* Managing Reservations */
-    Route::get('admin/darkrooms/{darkroomId}/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations.index');
-    Route::delete('admin/darkrooms/{darkroomId}/reservations/{reservationId}', [AdminReservationController::class, 'destroy'])->name('admin.reservations.destroy');
+    Route::get('admin/reservations', [AdminReservationController::class, 'index'])->name('admin.reservations.index');
+    Route::delete('admin/reservations/{reservation}', [AdminReservationController::class, 'destroy'])->name('admin.reservations.destroy');
 });
 
 Route::middleware('auth')->group(function () {
@@ -81,6 +81,5 @@ Route::get('/darkrooms/{id}/reservations', [ReservationController::class, 'index
     ->name('reservations.index');
 Route::post('/darkrooms/{id}/reservations', [ReservationController::class, 'store'])
     ->name('reservations.store');
-
 
 require __DIR__.'/auth.php';

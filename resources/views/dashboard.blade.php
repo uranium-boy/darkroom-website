@@ -12,7 +12,9 @@
                     <h1>Your reservations:</h1>
                     @if ($reservations->isEmpty())
                         <p>You have no upcoming reservations.</p>
-                        <x-primary-button href="{{ route('reservations') }}">{{ 'Make a reservation' }}</x-primary-button>
+                        <div class="mt-3">
+                            <x-primary-button href="{{ route('reservations') }}">{{ 'Make a reservation' }}</x-primary-button>
+                        </div>
                     @else
                         <div class="mt-6 mx-auto max-w-7xl">
                             <table class="w-full border-separate border-spacing-0 bg-gray-800 rounded-lg border border-gray-300 text-gray-300">
